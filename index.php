@@ -1,19 +1,13 @@
 <?php
 
-//ameliorer ligne 4-15 -> classe 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$databasename = "Authentification";
+require_once "connection.php";
+require_once "function.php";
 
-// Create connection
-$con = mysqli_connect($servername, $username, $password, $databasename);
+$con = new mysqli($servername,$username,$password,$databasename);
+if($con->connect_error) die("erreur");
 
-// Check connection
-if ($con->connect_error) {
 
-  die("Connexion échouée");
-}
+// récupération de toute les entrées 
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
   
@@ -23,12 +17,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
 }
 
-// Apprendre MySQL (10/20) : Sélectionner des données, SELECT (video pour selectionner les données | app manipulation myssql)
-// logique à faire : pour optimiser et eviter le bourer le cache voir comment appeler seulement les colonnes concernées -> la on appel tout faut améliorer
 
-$req = mysqli_query($con,"SELECT * FROM connexion"); // requete (serveur , action)
-$row = mysqli_num_rows($req); // récupère toute les lignes de la requête 
-
+//analyse des entrées 
 
 // if($_POST["validation"]){
   
@@ -57,7 +47,11 @@ $row = mysqli_num_rows($req); // récupère toute les lignes de la requête
 <!-- idee pour l'entrer de mot laisser type="text" et changer en type="mdp" pour masquer l'entrer -->
 
 <!-- 
+
+  Tutoriel PHP : Gestion d'un espace membre (refactorisation) -> pour la structuration du code en POO ?
   LIEN : https://codewithawa.com/posts/admin-and-user-login-in-php-and-mysql-database 
+  https://www.youtube.com/watch?v=nb5BHPYbBBY
+  
 -->
 
 
@@ -83,7 +77,7 @@ $row = mysqli_num_rows($req); // récupère toute les lignes de la requête
     <div class="container">
 
       <p>Connexion</p>
-
+    <!-- corriger les names en faisant simplement formulaire -> dans le css on aura juste a faire .xxx .xxx c'est mieux  -->
       <form action="" method="POST" class="container-formulaire">
 
         <div class="container-formulaire-username">

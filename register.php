@@ -1,6 +1,16 @@
 <?php
 
+require_once "connection.php";
+require_once "function.php";
 
+$con = new mysqli($servername,$username,$password,$databasename);
+if($con->connect_error) die("erreur");
+
+$resul = $con->query($table_users);
+if(!resul) die("echecc");
+// vlr utf8  pour les tables voir comment procédé : https://stackoverflow.com/questions/27451095/create-mysql-table-in-php-with-utf8-unicode-ci et verifier apres 
+
+// $con->close();
 ?>
 
 
