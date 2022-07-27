@@ -3,43 +3,16 @@
 require_once "connection.php";
 require_once "function.php";
 
+if(isset($_POST["validation"])){
+  analyse_auth();
+}
+
 $con = new mysqli($servername,$username,$password,$databasename);
 if($con->connect_error) die("erreur");
 
 
-// récupération de toute les entrées 
+recuperation_auth($_POST["username"],$_POST["password"]);
 
-if($_SERVER["REQUEST_METHOD"]=="POST"){
-  
-  $username = $_POST["username"];
-  $mdp = $_POST["mdp"];
-  $email = $_POST["email"];
-
-}
-
-
-//analyse des entrées 
-
-// if($_POST["validation"]){
-  
-//   //améliorer : mettre tout les champs dans un tab & si il y a plus de 2 champs vide -> envoyer " remplissez les champs "
-//   //parcour et si il y a qu'il seul champs vide ? switcher et renvoyer sa phrase
-//   if($username != NULL && $mdp != NULL & $email != NULL){
-//     // header("Location:user.php");
-//     echo "redirection";
-//   }else{
-//     if($username == NULL){
-//       echo "entrer un username\n";
-//     }
-//     if($mdp == NULL){
-//       echo "entrer un mot de passe\n";
-//     }
-//     if($email == NULL){
-//       echo "entrer une email\n";
-//     }
-//   }
-  
-// }
 
 ?>
 
